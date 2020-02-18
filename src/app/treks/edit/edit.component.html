@@ -1,22 +1,22 @@
-<form class="create-trek" action="#" method="post">
+<form #editForm="ngForm" class="create-trek" (ngSubmit)="editHandler(editForm.value)">
 
   <div class="form-label-group">
-    <input type="text"  name="location" class="form-control" placeholder="Location" required="" autofocus="" value = "">
+    <input [ngModel]="location" type="text"  name="location" class="form-control" placeholder="Location">
     <label for="inputTrekName">Location</label>
   </div>
 
   <div class="form-label-group">
-    <input type="text"  value = "" name="dateTime" class="form-control" placeholder="Date" required="">
+    <input [ngModel] = "date" type="text" name="dateTime" class="form-control" placeholder="Date" >
     <label for="inputTrekDate">Date</label>
   </div>
 
   <div class="form-label-group">
-    <textarea type="text"  name="description" class="form-control" placeholder="Description" required="" ></textarea>
+    <textarea type="text" [ngModel]="description" name="description" class="form-control" placeholder="Description" ></textarea>
     <label for="inputTrekDescription">Description</label>
   </div>
 
   <div class="form-label-group">
-    <input type="text" value = "" name="imageURL" class="form-control" placeholder="Image" required="" autofocus="">
+    <input type="text" [ngModel] = "imageUrl" name="imageURL" class="form-control" placeholder="Image" autofocus="">
     <label for="inputTrekImage">Image</label>
   </div>
   <div style="display: none">

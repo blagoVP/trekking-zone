@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditComponent implements OnInit {
 
+location = "current location from API";
+date = "current date from API";
+description = "current desc from API";
+imageUrl = "current ImageUrl from API";
+
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  editHandler(data){
+    console.log(data);
   }
 
 }

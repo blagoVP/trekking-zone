@@ -5,23 +5,16 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss', '../../../error-styles.scss']
 })
 export class LoginComponent implements OnInit {
 
   constructor(public authService: AuthService, public router: Router) { }
 
-  login(){
-
-  this.authService.login().subscribe(() => {
-    if (this.authService.isLoggedIn){
-
-      let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/user';
-
-      this.router.navigateByUrl(redirect);
-    }
-  })
+  loginHandler(data) {
+    console.log(data);
   }
+
 
   ngOnInit() {
   }

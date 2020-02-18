@@ -7,20 +7,32 @@ import {delay, tap} from 'rxjs/operators';
 })
 export class AuthService {
 
-  isLoggedIn = false;
+baseURL:string = 'https://baas.kinvey.com';
+appKey: string = 'kid_S1pjzCdaH';
+appSecret: string = '9283028c31344e48af2eb9179e17da7a';
 
-  redirectUrl:string;
+createAythorization(type: string): string {
+  return type === "Basic"
+      ? `Basic ${btoa(`${this.appKey}:${this.appSecret}`)}`
+      : `Kinvey ${sessionStorage.getItem('authtoken')}`
+}
 
-  login(): Observable<boolean> {
-    return of(true).pipe(
-      delay(1000),
-      tap(val => this.isLoggedIn = true)
-    );
-  }
 
-  logout(): void{
-    this.isLoggedIn = false;
-  }
+
+  // isLoggedIn = false;
+
+  // redirectUrl:string;
+
+  // login(): Observable<boolean> {
+  //   return of(true).pipe(
+  //     delay(1000),
+  //     tap(val => this.isLoggedIn = true)
+  //   );
+  // }
+
+  // logout(): void{
+  //   this.isLoggedIn = false;
+  // }
 
   constructor() { }
 }
