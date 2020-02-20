@@ -9,10 +9,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public authService: AuthService, public router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
-  loginHandler(data) {
-    console.log(data);
+  loginHandler({username, password}: {username:string, password: string}) {
+    this.authService.login(username, password).subscribe(() => {
+      this.router.navigate(['']);
+    }, console.error)
+
   }
 
 

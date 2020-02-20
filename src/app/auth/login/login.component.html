@@ -12,7 +12,7 @@
   <div class="form-label-group">
     <input #pasInput='ngModel' type="password" id="inputPassword" ngModel name="password" required minlength='6' class="form-control" placeholder="Password">
     <p class="error-message" *ngIf="pasInput?.errors?.required && pasInput.touched">Please enter a password</p>
-    <p class="error-message" *ngIf="pasInput?.errors?.minlength?.actualLength <= 5 && pasInput.touched">Password should has at least 6 chars</p>
+    <p class="error-message" *ngIf="pasInput?.errors?.minlength && pasInput.touched">Password should has at least 6 chars</p>
     <label for="inputPassword">Password</label>
   </div>
 

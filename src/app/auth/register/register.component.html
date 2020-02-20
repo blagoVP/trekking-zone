@@ -1,4 +1,4 @@
-<form #registerForm="ngForm">
+<form #registerForm="ngForm" (ngSubmit)="registerHandler(registerForm.value)">
 
   <div class="text-center mb-4">
     <h1 class="h3 mb-3 font-weight-normal">Register</h1>
