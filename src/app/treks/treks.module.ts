@@ -7,6 +7,7 @@ import { DetailsComponent } from './details/details.component';
 import { HomeEmptyComponent } from './home-empty/home-empty.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms'
+import { AuthGuard } from '../auth/auth.guard';
 // import { ListTreksPipe } from './list-treks.pipe';
 
 
@@ -20,7 +21,9 @@ import { FormsModule } from '@angular/forms'
     HomeComponent,
     // ListTreksPipe
   ],
-
+  providers: [
+    AuthGuard
+  ],
   imports: [
     CommonModule,
     FormsModule,

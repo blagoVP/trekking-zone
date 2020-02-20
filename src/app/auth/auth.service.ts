@@ -13,9 +13,8 @@ export class AuthService {
   appKey: string = 'kid_S1pjzCdaH';
   appSecret: string = '9283028c31344e48af2eb9179e17da7a';
 
-  basicAuth = `Basic ${btoa(`${this.appKey}:${this.appSecret}`)}`;
+  basicAuth: string = `Basic ${btoa(`${this.appKey}:${this.appSecret}`)}`;
 
-  currentUser: { username: string; password: string };
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -24,30 +23,41 @@ export class AuthService {
     })
   }
 
-
   get isLogged() {
-    return !!this.currentUser;
+    return !!localStorage.getItem('token');
+    // return !!this.currentUser;
   };
 
   constructor(private http: HttpClient) {
-    const currentUser = localStorage.getItem("current-user");
-    this.currentUser = currentUser ? JSON.parse(currentUser) : null;
+    // const currentUser = localStorage.getItem("current-user");
+    // this.currentUser = currentUser ? JSON.parse(currentUser) : null;
   };
 
   login(username: string, password: string) {
 
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/login`, { username, password }, this.httpOptions);
-
+    return this.http.post(`${this.baseURL}/user/${this.appKey}/login`,
+      { username, password }, this.httpOptions);
   };
 
   register(username: string, password: string) {
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/`, { username, password }, this.httpOptions);
+
+    return this.http.post(`${this.baseURL}/user/${this.appKey}/`,
+      { username, password }, this.httpOptions);
+
   };
 
   logout() {
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/logout`, {});
+    if (localStorage.getItem('token')){
+      const token = localStorage.getItem('token');
+      const httpOptionsUser = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Kinvey ${token}`
+        })
+      }
+    return this.http.post(`${this.baseURL}/user/${this.appKey}/_logout`,{}, httpOptionsUser);
+    }
   };
-
 
 
 

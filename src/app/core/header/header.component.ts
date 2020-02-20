@@ -10,12 +10,20 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
-  // logout(){
-  //   this.authService.logout();
-  //   console.log(this.authService.isLoggedIn)
-  // }
+  logout() {
+    console.log("in in in");
+    if (localStorage.getItem("token")) {
+      this.authService.logout().subscribe(() => {
+        localStorage.clear();
+      console.log(localStorage.getItem("token"));
+        this.router.navigate(['']);
+      });
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit() {
   }

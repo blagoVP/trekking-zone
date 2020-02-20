@@ -9,8 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { FormsModule } from '@angular/forms'
 import { TreksModule } from './treks/treks.module';
-import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthGuard } from './auth/auth.guard';
 
 
 @NgModule({
@@ -23,13 +23,12 @@ import { AuthModule } from './auth/auth.module';
     HttpClientModule,
     FormsModule,
     AuthModule,
-    AdminModule,
     CoreModule,
     UserModule,
     TreksModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

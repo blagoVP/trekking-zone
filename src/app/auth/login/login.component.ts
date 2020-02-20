@@ -11,9 +11,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  loginHandler({username, password}: {username:string, password: string}) {
-    this.authService.login(username, password).subscribe(() => {
-      this.router.navigate(['']);
+  loginHandler({ username, password }: { username: string, password: string }) {
+    this.authService.login(username, password).subscribe(userInfo => {
+      localStorage.setItem("token", `${userInfo._kmd.authtoken}`);
+      this.router.navigate(['/treks']);
     }, console.error)
 
   }
