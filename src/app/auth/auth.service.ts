@@ -15,7 +15,7 @@ export class AuthService {
 
   basicAuth = `Basic ${btoa(`${this.appKey}:${this.appSecret}`)}`;
 
-  currentUser: { email: string; password: string } = null;
+  currentUser: { username: string; password: string };
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -35,8 +35,9 @@ export class AuthService {
   };
 
   login(username: string, password: string) {
-    console.log(this.basicAuth);
+
     return this.http.post(`${this.baseURL}/user/${this.appKey}/login`, { username, password }, this.httpOptions);
+
   };
 
   register(username: string, password: string) {
