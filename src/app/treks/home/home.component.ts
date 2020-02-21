@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private treksService: TreksService) { }
 
   ngOnInit() {
-    // this.treks$ = this.treksService.loadAllTreks();
+    this.treks$ = this.treksService.loadAllTreks();
   }
 
 }

@@ -21,7 +21,7 @@ const treksRoutes: Routes = [
         component: HomeEmptyComponent
       },
       {
-        path: 'details',
+        path: 'details/:id',
         component: DetailsComponent
       },
       {
