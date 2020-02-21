@@ -1,29 +1,33 @@
 <form #editForm="ngForm" class="create-trek" (ngSubmit)="editHandler(editForm.value)">
 
   <div class="form-label-group">
-    <input [ngModel]="location" type="text"  name="location" class="form-control" placeholder="Location">
+    <input #locationInput="ngModel" required minlength="6" [ngModel]="location" type="text"  name="location" class="form-control">
+    <p class="error-message" *ngIf="locationInput.invalid && locationInput.touched">The location should be at least 6 characters long.</p>
     <label for="inputTrekName">Location</label>
   </div>
 
   <div class="form-label-group">
-    <input [ngModel] = "date" type="text" name="dateTime" class="form-control" placeholder="Date" >
+    <input  #dateInput="ngModel" [ngModel] = "date" type="text" name="dateTime" class="form-control" required pattern="^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$">
+    <p class="error-message" *ngIf="dateInput.invalid && dateInput.touched">Please ada a valid date format: dd-mm-yyyy</p>
     <label for="inputTrekDate">Date</label>
   </div>
 
   <div class="form-label-group">
-    <textarea type="text" [ngModel]="description" name="description" class="form-control" placeholder="Description" ></textarea>
+    <textarea  #desInput="ngModel" type="text" [ngModel]="description" name="description" class="form-control" required minlength="10"></textarea>
+    <p class="error-message" *ngIf="desInput.invalid && desInput.touched">The description should be at least 10 characters long.</p>
     <label for="inputTrekDescription">Description</label>
   </div>
 
   <div class="form-label-group">
-    <input type="text" [ngModel] = "imageUrl" name="imageURL" class="form-control" placeholder="Image" autofocus="">
+    <input  #imageInput="ngModel" type="text" [ngModel] = "imageUrl" name="imageURL" class="form-control" autofocus="" required pattern="^(https://|http://|www\.)\S*">
+    <p class="error-message" *ngIf="imageInput.invalid && imageInput.touched">Please ada a valid URL</p>
     <label for="inputTrekImage">Image</label>
   </div>
   <div style="display: none">
-    <input name="organizer" value="" />
-    <input name="likes" value="" />
+    <input [ngModel]="organizer" name="organizer" />
+    <input [ngModel]="likes" name="likes" />
   </div>
 
-  <button class="btn btn-lg btn-dark btn-block" type="submit">Edit the trek</button>
+  <button class="btn btn-lg btn-dark btn-block" [disabled]="editForm.invalid">Edit the trek</button>
 </form>
 

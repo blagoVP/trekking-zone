@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { notEqual } from 'assert';
+import { TreksService } from '../treks.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-request',
@@ -8,15 +10,16 @@ import { notEqual } from 'assert';
 })
 export class RequestComponent implements OnInit {
 
-  constructor() {
+  constructor(private trekService: TreksService, private router: Router, private authService: AuthService) { }
 
-   }
+organizer = this.authService.getUsername();
 
-  requestHandler(data){
+  requestHandler(data) {
     console.log(data);
-
+    this.trekService.postTrek(data).subscribe(() => {
+      this.router.navigate(['treks']);
+    });
   }
-
   ngOnInit() {
   }
 

@@ -17,6 +17,7 @@ trek: Itreks;
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
     this.trekService.loadSingleTrek(id).subscribe(value =>{
+      this.trekService.selectedTrek = value;
       this.trek = value;
     })
   }

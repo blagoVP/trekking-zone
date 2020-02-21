@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   registerHandler({ username, passwords: { password } }: { username: string, passwords: { password: string } }) {
     this.authService.register(username, password).subscribe((userInfo: Iuser) => {
       localStorage.setItem("token", `${userInfo._kmd.authtoken}`);
+      localStorage.setItem("username", `${userInfo.username}`);
       this.router.navigate(['']);
     }, console.error)
 

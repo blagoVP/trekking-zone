@@ -30,5 +30,10 @@
     <label for="inputTrekImage">Image</label>
   </div>
 
+  <div style="display: none">
+    <input [ngModel]="organizer" name="organizer" />
+    <input ngModel name="likes" />
+  </div>
+
   <button class="btn btn-lg btn-dark btn-block" [disabled]="requestForm.invalid">Make a wish =)</button>
 </form>

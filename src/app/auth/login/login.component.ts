@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   loginHandler({ username, password }: { username: string, password: string }) {
     this.authService.login(username, password).subscribe((userInfo: Iuser) => {
       localStorage.setItem("token", `${userInfo._kmd.authtoken}`);
+      localStorage.setItem("username", `${userInfo.username}`);
       this.router.navigate(['/treks']);
     }, console.error)
 

@@ -9,35 +9,33 @@ export class TreksService {
 
   appKey: string = 'kid_S1pjzCdaH';
 
-
-
   constructor(private http: HttpClient) {
 
    }
 
+selectedTrek: Itreks;
+
    loadAllTreks(){
-    const token = localStorage.getItem('token')
-    const httpOptionsUser = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Kinvey ${token}`
-      })
-    }
-return this.http.get<any[]>(`https://baas.kinvey.com/appdata/${this.appKey}/treks`, httpOptionsUser);
+
+return this.http.get<any[]>(`https://baas.kinvey.com/appdata/${this.appKey}/treks`);
    }
 
    loadSingleTrek(id: string){
-    const token = localStorage.getItem('token')
-    const httpOptionsUser = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Kinvey ${token}`
-      })
-    }
 
-    return this.http.get<Itreks>(`https://baas.kinvey.com/appdata/${this.appKey}/treks/${id}`, httpOptionsUser);
+    return this.http.get<Itreks>(`https://baas.kinvey.com/appdata/${this.appKey}/treks/${id}`);
 
    }
+
+   putTrek(data: Itreks, id: string){
+
+    return this.http.put(`https://baas.kinvey.com/appdata/${this.appKey}/treks/${id}`, data);
+
+   }
+
+   postTrek(data: Itreks){
+    return this.http.post(`https://baas.kinvey.com/appdata/${this.appKey}/treks`, data);
+   }
+
 
 
 

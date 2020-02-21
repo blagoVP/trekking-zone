@@ -13,16 +13,6 @@ export class AuthService {
   appKey: string = 'kid_S1pjzCdaH';
   appSecret: string = '9283028c31344e48af2eb9179e17da7a';
 
-  basicAuth: string = `Basic ${btoa(`${this.appKey}:${this.appSecret}`)}`;
-
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `${this.basicAuth}`
-    })
-  }
-
   get isLogged() {
     return !!localStorage.getItem('token');
     // return !!this.currentUser;
@@ -36,29 +26,30 @@ export class AuthService {
   login(username: string, password: string) {
 
     return this.http.post(`${this.baseURL}/user/${this.appKey}/login`,
-      { username, password }, this.httpOptions);
+      { username, password });
   };
 
   register(username: string, password: string) {
 
     return this.http.post(`${this.baseURL}/user/${this.appKey}/`,
-      { username, password }, this.httpOptions);
+      { username, password });
 
   };
 
   logout() {
     if (localStorage.getItem('token')){
-      const token = localStorage.getItem('token');
-      const httpOptionsUser = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': `Kinvey ${token}`
-        })
-      }
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/_logout`,{}, httpOptionsUser);
+
+    return this.http.post(`${this.baseURL}/user/${this.appKey}/_logout`,{});
     }
   };
 
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
+  getUsername (){
+    return localStorage.getItem('username');
+  }
 
 
 
