@@ -1,5 +1,6 @@
 export interface Itreks {
-  name: string;
+  _id: string;
+  location: string;
   dateTime: string;
   description: string;
   imageURL: string;

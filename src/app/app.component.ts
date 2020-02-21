@@ -9,11 +9,6 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent {
   title = 'TrekkingZone';
 
-  get isReady(): boolean {
-    return this.authService.currentUser !== undefined;
-  }
-
-
   constructor(private authService: AuthService) {
 
   }

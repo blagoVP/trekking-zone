@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Iuser } from '../user';
+
 
 @Component({
   selector: 'app-register',
@@ -15,7 +17,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerHandler({ username, passwords: { password } }: { username: string, passwords: { password: string } }) {
-    this.authService.register(username, password).subscribe(userInfo => {
+    this.authService.register(username, password).subscribe((userInfo: Iuser) => {
       localStorage.setItem("token", `${userInfo._kmd.authtoken}`);
       this.router.navigate(['']);
     }, console.error)
