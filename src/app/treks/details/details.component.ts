@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Itreks } from '../treks';
+import { TreksService } from '../treks.service';
 
 @Component({
   selector: 'app-details',
@@ -8,10 +10,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private trekService: TreksService) { }
+
+trek: Itreks;
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.params['id']
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.trekService.loadSingleTrek(id).subscribe(value =>{
+      this.trek = value;
+    })
+  }
+
+  likeTrek(){
+
   }
 
 }

@@ -1,11 +1,11 @@
 <div class="row single-trek-details text-center">
   <div class="col-md-12 text-center overflow-hidden">
     <img class="details-img"
-    src="https://s3.us-east-1.wasabisys.com/mts-wp-uploads/trips/trip_hero8_kha_2880x1260.jpg" />
+    [src]="trek.imageURL" />
     <div class="overflow-hidden my-3 p-3">
-      <h2 class="display-5">Everest Base Camp</h2>
+      <h2 class="display-5">{{trek.location}}</h2>
       <p class="infoType">Description:</p>
-      <p class="trek-description">Experience beautiful Tengboche Monastery, local Sherpa hospitality, and the serenity of Buddhist culture as you trek to the top of Kala Patar. Here, behold the great Mount Everest-an epic view matched only by your incredible sense of accomplishment-before arriving at the legendary Mt. Everest Base Camp at an elevation of 17,600'.</p>
+      <p class="trek-description">{{trek.description}}</p>
       <!-- <p class="infoType">Date: <large>26.08.2020</large></p>
       <p class="infoType">Likes: <large>0</large></p>
       <p class="infoType">Organizer: <large>username</large></p> -->
@@ -31,7 +31,7 @@
 </svg>
 Edit the trek
     </a>
-    <a class="a-button" href="#" >
+    <a class="a-button" routerLink='/treks' >
       <svg version="1.1" width="30px" id="remove-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
  viewBox="0 0 507.2 507.2" style="enable-background:new 0 0 507.2 507.2;" xml:space="preserve">
 <circle style="fill:rgb(248, 184, 8);" cx="253.6" cy="253.6" r="253.6"/>
@@ -45,7 +45,7 @@ c-11.2,11.2-30.4,11.2-41.6,0l-22.4-22.4c-11.2-11.2-11.2-30.4,0-41.6L309.6,133.6z
 </svg>
 Close the trek
     </a>
-    <a class="a-button" href="#" >
+    <a class="a-button" (click)="likeTrek()" >
     <svg version="1.1" width="30px" id="like-button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
       viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
    <path style="fill:rgb(248, 184, 8)" d="M24.85,10.126c2.018-4.783,6.628-8.125,11.99-8.125c7.223,0,12.425,6.179,13.079,13.543
