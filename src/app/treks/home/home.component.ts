@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TreksService } from '../treks.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  treks$: Observable<any[]>;
+
+  constructor(private treksService: TreksService) { }
 
   ngOnInit() {
+    this.treks$ = this.treksService.loadAllTreks();
   }
 
 }

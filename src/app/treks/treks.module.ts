@@ -6,13 +6,27 @@ import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeEmptyComponent } from './home-empty/home-empty.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms'
+import { AuthGuard } from '../auth/auth.guard';
+// import { ListTreksPipe } from './list-treks.pipe';
 
 
 
 @NgModule({
-  declarations: [RequestComponent, EditComponent, DetailsComponent, HomeEmptyComponent, HomeComponent],
+  declarations: [
+    RequestComponent,
+    EditComponent,
+    DetailsComponent,
+    HomeEmptyComponent,
+    HomeComponent,
+    // ListTreksPipe
+  ],
+  providers: [
+    AuthGuard
+  ],
   imports: [
     CommonModule,
+    FormsModule,
     TreksRoutingModule
   ]
 })

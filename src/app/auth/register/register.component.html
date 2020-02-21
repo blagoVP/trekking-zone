@@ -1,0 +1,37 @@
+<form #registerForm="ngForm" (ngSubmit)="registerHandler(registerForm.value)">
+
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+    <p>Join our family and make a wish!</p>
+  </div>
+
+  <div class="form-label-group">
+    <input #userInput="ngModel" type="text" id="inputUsername" ngModel name="username" class="form-control" placeholder="Username" required
+    minlength="3" autofocus="">
+    <p class="error-message" *ngIf="userInput.invalid && userInput.touched">The username should be at least 3 characters long</p>
+    <label for="inputUsername">Username</label>
+  </div>
+<div class="passGroup" #passwordsGroup= "ngModelGroup" ngModelGroup="passwords" appPasswordMatch>
+  <div class="form-label-group">
+    <input type="password" id="inputPassword" #passInput="ngModel" ngModel name="password" required minlength="6" class="form-control" placeholder="Password">
+    <p class="error-message" *ngIf="passInput.errors?.minlength && passInput.touched">The password should be at least 6 characters long</p>
+    <label for="inputPassword">Password</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password" id="inputRePassword" ngModel name="rePassword" required class="form-control" placeholder="Re-Password">
+    <label for="inputRePassword">Re-Password</label>
+    <p class="error-message" *ngIf="passwordsGroup.invalid && passwordsGroup.touched">Passwords don't match!</p>
+  </div>
+</div>
+  <button class="btn btn-lg btn-dark btn-block"  [disabled]="registerForm.invalid">Sign Up</button>
+
+  <div class="text-center mb-4">
+    <p class="alreadyUser"> Already have account? Then just
+      <a routerLink="/login">Sign-In</a>!
+    </p>
+  </div>
+
+  <p class="mt-5 mb-3 text-muted text-center">© The Trekking Zone - 2019.</p>
+
+</form>

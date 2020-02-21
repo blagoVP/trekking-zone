@@ -5,6 +5,7 @@ import { RequestComponent } from './request/request.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 
 const treksRoutes: Routes = [
@@ -20,7 +21,7 @@ const treksRoutes: Routes = [
         component: HomeEmptyComponent
       },
       {
-        path: 'details',
+        path: 'details/:id',
         component: DetailsComponent
       },
       {
@@ -32,7 +33,8 @@ const treksRoutes: Routes = [
         pathMatch: 'full',
         component: HomeComponent
       },
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 

@@ -1,0 +1,27 @@
+input.ng-invalid.ng-touched{
+  border-color: red;
+}
+input.ng-valid{
+  border-color: green;
+}
+p.error-message{
+  color: red;
+  font-style: italic;
+  text-align: center;
+}
+div.passGroup.ng-valid{
+  input{
+    border-color: green;
+  }
+}
+div.passGroup.ng-invalid.ng-touched{
+  input{
+    border-color: red;
+  }
+}
+textarea.ng-invalid.ng-touched{
+  border-color: red;
+}
+textarea.ng-valid{
+  border-color: green;
+}
