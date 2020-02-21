@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.treks$ = this.treksService.loadAllTreks();
+
   }
 
 }

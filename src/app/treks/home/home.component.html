@@ -2,7 +2,7 @@
 
   <!-- vzima se broi s tozi pipe taka: <div> treks$ | async | listTreks </div>-->
 
-    <a routerLink="details/:id" class="card overflow-hidden treksPlaceholder trek-details"
+    <a [routerLink]="['/treks/details/', trek._id]" class="card overflow-hidden treksPlaceholder trek-details"
   style="width: 20rem; height: 18rem;"
   *ngFor="let trek of treks$ | async">
     <div class="card-body">
