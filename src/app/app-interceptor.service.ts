@@ -1,6 +1,8 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpEvent, HttpHandler } from '@angular/common/http';
 import { AuthService } from "./auth/auth.service"
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +18,51 @@ export class AppInterceptorService implements HttpInterceptor {
 
   }
 
-  intercept(req, next) {
+  intercept(req : HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
     let authService = this.injector.get(AuthService);
-    if (req.url.endsWith('login') || req.url.endsWith(this.appKey)) {
+    if (req.url.endsWith('login') || req.url.endsWith(`${this.appKey}/`)) {
       let appReq = req.clone({
         setHeaders: {
           'Authorization': `${this.basicAuth}`
         }
       })
-      return next.handle(appReq);
+      return next.handle(appReq).pipe(
+        catchError(this.handleError)
+      );
     } else {
       let appReq = req.clone({
         setHeaders: {
           'Authorization': `Kinvey ${authService.getToken()}`
         }
       })
-      return next.handle(appReq);
+      return next.handle(appReq).pipe(
+        catchError(this.handleError)
+      );
     }
+  }
+
+  handleError(error) {
+
+    let errorMessage = '';
+
+    if (error.error instanceof ErrorEvent) {
+
+      // client-side error
+
+      errorMessage = `Error: ${error.error.message}`;
+
+    } else {
+
+      // server-side error
+
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+
+    }
+
+    window.alert(errorMessage);
+
+    return throwError(errorMessage);
+
   }
 
 }

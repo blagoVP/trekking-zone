@@ -12,11 +12,11 @@
       </svg>
     </a>
 
-    <a class="py-2 d-none d-md-inline-block" routerLink="/treks/request">Request Trek</a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/user">Hello, username</a>
+    <a *ngIf="isLogged" class="py-2 d-none d-md-inline-block" routerLink="/treks/request">Request Trek</a>
+    <a *ngIf="isLogged" class="py-2 d-none d-md-inline-block" routerLink="/user">Hello, {{isLogged}}</a>
     <!-- <a class="py-2 d-none d-md-inline-block" routerLink="/logout">Logout</a> -->
-    <a class="py-2 d-none d-md-inline-block" routerLink="/login">Login</a>
-    <a class="py-2 d-none d-md-inline-block" routerLink="/register">Register</a>
-    <button type="button" (click)="logout()" >Logout</button>
+    <a [class.disabled]="isLogged" class="py-2 d-none d-md-inline-block" routerLink="/login">Login</a>
+    <a [class.disabled]="isLogged" class="py-2 d-none d-md-inline-block" routerLink="/register">Register</a>
+    <button *ngIf="isLogged" type="button" (click)="logout()" >Logout</button>
   </div>
 </nav>

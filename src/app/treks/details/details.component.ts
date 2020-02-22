@@ -12,18 +12,34 @@ export class DetailsComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private trekService: TreksService) { }
 
-trek: Itreks;
+  trek: Itreks;
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.trekService.loadSingleTrek(id).subscribe(value =>{
+    this.trekService.loadSingleTrek(id).subscribe(value => {
       this.trekService.selectedTrek = value;
       this.trek = value;
     })
   }
 
-  likeTrek(){
+  get organizer() {
+    return this.trek.organizer === localStorage.getItem('username');
+  }
 
+  deleteTrek() {
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.trekService.deleteTrek(id).subscribe(() => {
+      this.router.navigate(['treks'])
+    })
+  }
+
+  likeTrek() {
+    const id = this.activatedRoute.snapshot.params['id'];
+    let data = this.trek;
+    data.likes = data.likes + 1;
+    this.trekService.putTrek(data, id).subscribe(() => {
+      this.router.navigate(['treks']);
+    })
   }
 
 }

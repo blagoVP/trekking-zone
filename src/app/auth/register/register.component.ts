@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(username, password).subscribe((userInfo: Iuser) => {
       localStorage.setItem("token", `${userInfo._kmd.authtoken}`);
       localStorage.setItem("username", `${userInfo.username}`);
-      this.router.navigate(['']);
+      this.router.navigate(['/treks']);
     }, console.error)
 
   }
