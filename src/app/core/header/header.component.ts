@@ -10,7 +10,9 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService, private router: Router) { }
+  constructor(public authService: AuthService, private router: Router) {
+    this.username = this.authService.getUsername();
+  }
 
   logout() {
     if (localStorage.getItem("token")) {
@@ -23,7 +25,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  get isLogged() {
+    return this.authService.getUsername();
+  }
+
+  username: string = null;
+
   ngOnInit() {
+
   }
 
 }

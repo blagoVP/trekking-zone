@@ -20,6 +20,7 @@ a{
   color: rgb(46, 45, 45);
   padding:10px;
   transition: ease-in-out color .15s;
+  cursor:pointer;
 }
 .a-button:hover{
   color: rgb(78, 58, 2);
@@ -301,5 +302,10 @@ transform: translate(-50%, -50%);
 }
 .no-found-template{
 color: black(255, 255, 255, 0.513);
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 /* You can add global styles to this file, and also import other style files */

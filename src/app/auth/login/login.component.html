@@ -5,7 +5,9 @@
   </div>
 
   <div class="form-label-group">
-    <input type="text" id="inputUsername" ngModel name="username" required class="form-control" placeholder="Username" autofocus="">
+    <input #userInput="ngModel" type="text" id="inputUsername" ngModel name="username" required
+    minlength="3" class="form-control" placeholder="Username" autofocus="">
+    <p class="error-message" *ngIf="userInput.invalid && userInput.touched">The username should be at least 3 characters long</p>
     <label for="inputUsername">Username</label>
   </div>
 

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://baas.kinvey.com'
+  // apiURL: 'https://baas.kinvey.com'
 };
 
 /*
