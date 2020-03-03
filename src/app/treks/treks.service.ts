@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Itreks } from './treks';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class TreksService {
 
   appKey: string = 'kid_S1pjzCdaH';
@@ -14,7 +13,7 @@ export class TreksService {
 selectedTrek: Itreks;
 
    loadAllTreks(){
-return this.http.get<any[]>(`https://baas.kinvey.com/appdata/${this.appKey}/treks`);
+return this.http.get<Itreks[]>(`https://baas.kinvey.com/appdata/${this.appKey}/treks`);
    }
 
    loadSingleTrek(id: string){

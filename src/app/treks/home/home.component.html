@@ -1,14 +1,9 @@
 <div id="treks-list">
-
-  <!-- vzima se broi s tozi pipe taka: <div> treks$ | async | listTreks </div>-->
-
-    <a [routerLink]="['/treks', 'details', trek._id]" class="card overflow-hidden treksPlaceholder trek-details"
-  style="width: 20rem; height: 18rem;"
-  *ngFor="let trek of treks$ | async">
+  <a [routerLink]="['/treks', 'details', trek._id]" class="card overflow-hidden treksPlaceholder trek-details"
+    style="width: 20rem; height: 18rem;" *ngFor="let trek of treks$ | async">
     <div class="card-body">
       <p class="card-text">{{trek.location}}</p>
     </div>
-    <img class="card-image"
-      [src]="trek.imageURL"
-      alt="Card image cap">
+    <img class="card-image" [src]="trek.imageURL" alt="Card image cap">
   </a>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TreksService } from '../treks.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,11 @@ export class HomeComponent implements OnInit {
 
   treks$: Observable<any[]>;
 
-  constructor(private treksService: TreksService) { }
+  constructor(private treksService: TreksService, activatedRoute: ActivatedRoute) {
+    this.treks$ = of(activatedRoute.snapshot.data.treksList);
+   }
 
   ngOnInit() {
-    this.treks$ = this.treksService.loadAllTreks();
 
   }
 
