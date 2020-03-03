@@ -3,6 +3,9 @@ import { HttpInterceptor, HttpRequest, HttpEvent, HttpHandler } from '@angular/c
 import { AuthService } from "./auth/auth.service"
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { environment } from "../environments/environment"
+
+const apiUrl = environment.apiURL;
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +21,11 @@ export class AppInterceptorService implements HttpInterceptor {
 
   }
 
-  intercept(req : HttpRequest<any>, next: HttpHandler) : Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
     let authService = this.injector.get(AuthService);
     if (req.url.endsWith('login') || req.url.endsWith(`${this.appKey}/`)) {
-      let appReq = req.clone({
+      let appReq = req.clone({ url: `${apiUrl}/${req.url}`,
         setHeaders: {
           'Authorization': `${this.basicAuth}`
         }
@@ -30,7 +34,7 @@ export class AppInterceptorService implements HttpInterceptor {
         catchError(this.handleError)
       );
     } else {
-      let appReq = req.clone({
+      let appReq = req.clone({ url: `${apiUrl}/${req.url}` ,
         setHeaders: {
           'Authorization': `Kinvey ${authService.getToken()}`
         }
