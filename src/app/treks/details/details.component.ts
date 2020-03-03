@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Itreks } from '../treks';
 import { TreksService } from '../treks.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +17,7 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     const id = this.activatedRoute.snapshot.params['id'];
-    this.trekService.loadSingleTrek(id).subscribe(value => {
+    of(this.activatedRoute.snapshot.data.detailsLoad).subscribe(value => {
       this.trekService.selectedTrek = value;
       this.trek = value;
     })

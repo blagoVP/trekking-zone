@@ -6,6 +6,8 @@ import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from '../auth/auth.guard';
+import { TreksResolverService } from './treks-resolver.service';
+import { TreksDetailsResolverService } from './treks-details-resolver.service';
 
 
 const treksRoutes: Routes = [
@@ -21,16 +23,22 @@ const treksRoutes: Routes = [
         component: HomeEmptyComponent
       },
       {
-        path: 'details/:id',
-        component: DetailsComponent
-      },
-      {
         path: 'edit',
         component: EditComponent
       },
       {
+        path: 'details/:id',
+        resolve: {
+          detailsLoad: TreksDetailsResolverService
+        },
+        component: DetailsComponent
+      },
+      {
         path: '',
         pathMatch: 'full',
+        resolve:{
+          treksList: TreksResolverService
+        },
         component: HomeComponent
       },
     ],

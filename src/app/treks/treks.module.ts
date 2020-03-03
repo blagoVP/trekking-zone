@@ -8,6 +8,8 @@ import { HomeEmptyComponent } from './home-empty/home-empty.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule } from '@angular/forms'
 import { AuthGuard } from '../auth/auth.guard';
+import { TreksService } from './treks.service';
+import { TreksResolverService } from './treks-resolver.service';
 // import { ListTreksPipe } from './list-treks.pipe';
 
 
@@ -22,7 +24,9 @@ import { AuthGuard } from '../auth/auth.guard';
     // ListTreksPipe
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    TreksService,
+    TreksResolverService
   ],
   imports: [
     CommonModule,
