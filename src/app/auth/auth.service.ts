@@ -15,23 +15,19 @@ export class AuthService {
 
   get isLogged() {
     return !!localStorage.getItem('token');
-    // return !!this.currentUser;
   };
 
-  constructor(private http: HttpClient) {
-    // const currentUser = localStorage.getItem("current-user");
-    // this.currentUser = currentUser ? JSON.parse(currentUser) : null;
-  };
+  constructor(private http: HttpClient) {  };
 
   login(username: string, password: string) {
 
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/login`,
+    return this.http.post(`user/${this.appKey}/login`,
       { username, password });
   };
 
   register(username: string, password: string) {
 
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/`,
+    return this.http.post(`user/${this.appKey}/`,
       { username, password });
 
   };
@@ -39,7 +35,7 @@ export class AuthService {
   logout() {
     if (localStorage.getItem('token')){
 
-    return this.http.post(`${this.baseURL}/user/${this.appKey}/_logout`,{});
+    return this.http.post(`user/${this.appKey}/_logout`,{});
     }
   };
 
